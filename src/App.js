@@ -8,7 +8,7 @@ import ListAllChatPanels from './components/ListAllChatPanels';
 import Header from './components/Header';
 
 
-const ENDPOINT = "http://51.75.77.19:44445/graphql";
+
 
 var query = `
 mutation createChat($data: NewPanelInput) {
@@ -38,16 +38,16 @@ const App = () => {
     };
     // bütün verileri api'dan alıyoruz
     useEffect(() => {
-        axios.post(ENDPOINT, { query: getAllChatPanels })
+        axios.post(process.env.REACT_APP_ENDPOINT, { query: getAllChatPanels })
             .then(res => setAllChats(res.data.data.getAllChatPanels))
-            .then(() => console.log(allChats))
-    }, []);
+            
+    }, [allChats]);
     const data = {
         "title": liveSupport,
         "url": webUrl
     }
     const addChatPanel = () => {
-        axios.post(ENDPOINT, {
+        axios.post(process.env.REACT_APP_ENDPOINT, {
             query,
             variables: {
                 data
@@ -225,19 +225,6 @@ const App = () => {
                             </div>
                         </Form>
                     }
-                    {/* {
-                        step === 2 &&
-                        <div className="d-flex flex-column">
-                            <h3 className="bg-transparent text-center">
-                                İşlem başarılı!
-                            </h3>
-                            <Button variant="success" onClick={() => {
-                                handleShowModal();
-                            }}>
-                                OK
-                            </Button>
-                        </div>
-                    } */}
                 </Modal.Body>
             </Modal>
         </Container>

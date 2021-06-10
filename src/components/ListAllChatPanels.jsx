@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { Container, Button } from 'react-bootstrap'
-import CopyToClipboard from 'react-copy-to-clipboard'
-import { CopiedClipboardIcon, CheckIcon } from './Icons';
+import { CopiedClipboardIcon } from './Icons';
 
 const ListAllChatPanels = ({ allChatPanels, code }) => {
     const [copied, setCopied] = useState(false);
     return (
         <Container fluid className="my-2">
-            {allChatPanels.map((item) => {
+            {allChatPanels.map((item, index) => {
                 return (
-                    <div className="d-flex flex-column align-items-center justify-content-center border-bottom my-3">
+                    <div key={index} className="d-flex flex-column align-items-center justify-content-center border-bottom my-3">
                         <div className="d-flex w-100 h-100 text-center flex-row justify-content-between">
                             <span>{item.title}</span>
                             <span>{item.url}</span>
@@ -18,13 +17,13 @@ const ListAllChatPanels = ({ allChatPanels, code }) => {
                                 <CopiedClipboardIcon className="text-black-50 icon-copy" />
                             </div>
                             {/* İşlemler */}
-                            <div class="row">
-                                <div class="col-4">
+                            <div className="row">
+                                <div className="col-4">
                                     <Button variant="danger btn">
                                         Kaldır
                                     </Button>
                                 </div>
-                                <div class="col-8">
+                                <div className="col-8">
                                     <Button variant="primary btn">
                                         Düzenle
                                     </Button></div>
@@ -36,5 +35,4 @@ const ListAllChatPanels = ({ allChatPanels, code }) => {
         </Container>
     )
 }
-
 export default ListAllChatPanels;
