@@ -39,13 +39,14 @@ const App = () => {
     // bütün verileri api'dan alıyoruz
     useEffect(() => {
         axios.post(process.env.REACT_APP_ENDPOINT, { query: getAllChatPanels })
-            .then(res => setAllChats(res.data.data.getAllChatPanels))
+            .then(res => setAllChats(res.data.data.getAllChatPanels));
             
     }, [allChats]);
     const data = {
         "title": liveSupport,
         "url": webUrl
     }
+    // add panel to api
     const addChatPanel = () => {
         axios.post(process.env.REACT_APP_ENDPOINT, {
             query,
